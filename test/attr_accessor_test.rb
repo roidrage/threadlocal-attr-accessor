@@ -1,9 +1,11 @@
 require 'test_helper'
 
 class Person
-  ts_attr_accessor :connection
-  ts_attr_reader :owner
-  ts_attr_writer :job
+  tl_attr_accessor :connection
+  tl_attr_reader :owner
+  tl_attr_writer :job
+  
+  tl_attr_accessor :other_connection, :real_connection
 end
 
 class AttrAccessorTest < Test::Unit::TestCase
@@ -84,6 +86,15 @@ class AttrAccessorTest < Test::Unit::TestCase
         end
         t.join
         assert_equal :janitor, Thread.current["person_#{@person.object_id}_job"]
+      end
+    end
+    
+    context "with multiple variable names" do
+      should "create accessors for all variable names" do
+        assert @person.respond_to?(:other_connection)
+        assert @person.respond_to?(:real_connection)
+        assert @person.respond_to?(:real_connection=)
+        assert @person.respond_to?(:other_connection=)
       end
     end
   end

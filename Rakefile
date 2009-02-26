@@ -25,8 +25,8 @@ task :test => "test:unit"
 namespace :test do
   desc "Unit tests"
   Rake::TestTask.new(:unit) do |t|
-    t.libs << 'test/unit'
-    t.pattern = "test/*_shoulda.rb"
+    t.libs << 'test'
+    t.pattern = "test/*_test.rb"
     t.verbose = true
   end
 end
