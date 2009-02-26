@@ -6,6 +6,8 @@ class Person
   tl_attr_writer :job
   
   tl_attr_accessor :other_connection, :real_connection
+  tl_attr_reader :spouse, :children
+  tl_attr_writer :occupation, :hobbies
 end
 
 class AttrAccessorTest < Test::Unit::TestCase
@@ -95,6 +97,20 @@ class AttrAccessorTest < Test::Unit::TestCase
         assert @person.respond_to?(:real_connection)
         assert @person.respond_to?(:real_connection=)
         assert @person.respond_to?(:other_connection=)
+      end
+      
+      should "create only read-only accessors for all variable names" do
+        assert @person.respond_to?(:spouse)
+        assert @person.respond_to?(:children)
+        assert !@person.respond_to?(:spouse=)
+        assert !@person.respond_to?(:children=)
+      end
+      
+      should "create only write accessors for all variable names" do
+        assert !@person.respond_to?(:occupation)
+        assert !@person.respond_to?(:hobbies)
+        assert @person.respond_to?(:occupation=)
+        assert @person.respond_to?(:hobbies=)
       end
     end
   end
