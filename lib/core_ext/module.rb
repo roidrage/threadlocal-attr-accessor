@@ -19,4 +19,10 @@ class Module
       end
     end
   end
+  
+  def tl_attr(name, writable = false)
+    tl_attr_reader(name)
+    
+    tl_attr_writer(name) if writable
+  end
 end

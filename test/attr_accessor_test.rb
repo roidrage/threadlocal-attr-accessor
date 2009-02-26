@@ -4,6 +4,10 @@ class Person
   tl_attr_accessor :connection
   tl_attr_reader :owner
   tl_attr_writer :job
+
+  tl_attr :name, true
+  tl_attr :firstname
+  tl_attr :nickname, false
   
   tl_attr_accessor :other_connection, :real_connection
   tl_attr_reader :spouse, :children
@@ -111,6 +115,23 @@ class AttrAccessorTest < Test::Unit::TestCase
         assert !@person.respond_to?(:hobbies)
         assert @person.respond_to?(:occupation=)
         assert @person.respond_to?(:hobbies=)
+      end
+    end
+    
+    context "with attr" do
+      should "create a getter and no setter by default" do
+        assert @person.respond_to?(:firstname)
+        assert !@person.respond_to?(:firstname=)
+      end
+      
+      should "create a getter and setter with second parameter true" do
+        assert @person.respond_to?(:name)
+        assert @person.respond_to?(:name=)
+      end
+      
+      should "create only getter when second parameter false" do
+        assert @person.respond_to?(:nickname)
+        assert !@person.respond_to?(:nickname=)
       end
     end
   end
