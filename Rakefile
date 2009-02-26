@@ -5,10 +5,10 @@ require 'rake/testtask'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |s|
-    s.name = 'threadsafe-attr-accessor'
-    s.summary = 'Think attr_accessor, only thread-safe. Figures, huh?'
+    s.name = 'threadlocal-attr-accessor'
+    s.summary = 'Think attr_accessor, only thread-local. Figures, huh?'
     s.email = 'meyer@paperplanes.de'
-    s.homepage = 'http://github.com/mattmatt/threadsafe-attr-accessor'
+    s.homepage = 'http://github.com/mattmatt/threadlocal-attr-accessor'
     s.authors = ["Mathias Meyer"]
     s.files = FileList["[A-Z]*", "{lib,test}/**/*"]
   end
